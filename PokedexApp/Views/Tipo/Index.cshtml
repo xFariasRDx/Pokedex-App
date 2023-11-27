@@ -1,0 +1,62 @@
+﻿@model List<Application.ViewModels.TipoViewModels>
+@{
+    ViewData["Title"] = "Tipos";
+}
+<div class="container-fluid">
+
+    <div class="album py-5 row py-lg-5">
+        <center>
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-bold fw-light">Types Maintenance</h1>
+                <p class="lead text-muted">Here you can create new types</p>
+            </div>
+        </center>
+
+    </div>
+
+    <div class="d-xl-flex flex-column justify-content-center align-content-md-center mb-5 ">
+        <a asp-controller="Tipo" asp-action="Create" class="btn btn-outline-success">Crear Nuevo Tipo</a>
+    </div>
+
+    <div class="row">
+
+        @if (Model == null || Model.Count == 0)
+        {
+            <center>
+                <div>
+
+                    <h2>You have not caught any pokemon yet</h2>
+
+                </div>
+            </center>
+        }
+        else
+        {
+            @foreach (Application.ViewModels.TipoViewModels pvm in Model)
+            {
+                <div class="col-3 mb-3">
+                    <div class="card shadow-sm">
+                        @*<img class="bd-placeholder-img card-img-top" src="@pvm.ImageUrl" alt="Loading..." />*@
+                        <div class="card-body">
+                            <h4 class="text-center card-text mb-6 mb-3">@pvm.Tipo</h4>
+
+                            <div>
+
+                                <center>
+                                    <div class="btn-group">
+                                        <a asp-controller="Tipo" asp-action="Edit" asp-route-id="@pvm.Id" class="btn btn-sm btn-outline-warning">Editar</a>
+                                        <a asp-controller="Tipo" asp-action="Delete" asp-route-id="@pvm.Id" class="btn btn-sm btn-outline-danger">Borrar</a>
+
+                                    </div>
+                                </center>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</div>

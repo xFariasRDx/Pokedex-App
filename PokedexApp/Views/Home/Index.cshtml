@@ -1,0 +1,130 @@
+﻿@model List<Application.ViewModels.PokemonsViewModels>
+@{
+    ViewData["Title"] = "Pokemons";
+}
+<div class="container-fluid">
+
+    <div class="album py-5 row py-lg-5">
+        <center>
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-bold fw-light">Welcome to PokedexApp</h1>
+                <p class="lead text-muted">Here you can see the captured pokemons</p>
+            </div>
+        </center>
+        
+    </div>
+
+    <div class="row">
+
+        <div class="col-3">
+
+            <div class="mb-5 card shadow-sm">
+                <div class="card-header bg-secondary text-light">
+                    <center>
+                        <h4>Buscar</h4>
+                    </center>
+                </div>
+
+                <div class="card-body">
+
+                    <form method="post" asp-controller="Home" asp-action="Buscar">
+                        <center>
+                            <div class="mb-3">
+                                <input class="form-control" type="search" name="name" />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Buscar</button>
+                        </center>
+                    </form>
+
+                </div>
+            </div>
+
+
+            <div class="card shadow-sm">
+                <div class="card-header bg-secondary text-light">
+                    <center>
+                        <h4>Filtros</h4>
+                    </center>
+                </div>
+
+                <div class="card-body">
+
+                    <h4 class="cardcard-title">Regiones</h4>
+
+                    <form method="post" asp-controller="Home">
+
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" value="null" type="radio" name="RegionId" id="region-all" />
+                                <label class="form-check-label" for="region-all">Todas</label>
+                            </div>
+                        </div>
+
+
+
+                        @foreach (Application.ViewModels.RegionViewModels rvm in ViewBag.Region)
+                        {
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" value="@rvm.Id" type="radio" name="RegionId" id="region-@rvm.Id" />
+                                    <label class="form-check-label" for="region-@rvm.Id">@rvm.Name</label>
+                                </div>
+                            </div>
+                        }
+                        <button type="submit" class="btn btn-primary">Filtrar</button>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+        
+
+        <div class="col-9">
+
+            <div class="row">
+                @if (Model == null || Model.Count == 0)
+                {
+                    <center>
+                        <div>
+
+                            <h2>You have not caught any pokemon yet</h2>
+
+                        </div>
+                    </center>
+                }
+
+                else
+                {
+                    @foreach (Application.ViewModels.PokemonsViewModels pvm in Model)
+                    {
+                        <div class="col-4">
+                            <div class="card shadow-sm">
+                                <img class="bd-placeholder-img card-img-top" src="@pvm.ImageUrl" alt="Loading..." />
+                                <div class="card-body">
+                                    <h4 class="text-center  mb-6 mb-3">@pvm.Name</h4>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-sm btn-outline-secondary">@pvm.Tipo1</button>
+                                                    <button type="button" class="btn btn-sm btn-outline-secondary">@pvm.Tipo2</button>
+                                                </div>
+                                                <small class="truco text-muted">@pvm.Region</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+
+            </div>
+        </div>
+
+        </div>
+    </div>
