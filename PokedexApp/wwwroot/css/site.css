@@ -1,0 +1,29 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.div-card {
+    width: 279px;
+    height: 355.8px;
+}
+.bulbasor{
+    width:80px;
+}
+.truco {
+    font-size:17px;
+    margin-left: 85px;
+}

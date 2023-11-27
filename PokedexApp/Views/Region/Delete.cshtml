@@ -1,0 +1,36 @@
+﻿@model Application.ViewModels.SaveRegionViewModels
+@{
+    ViewData["Title"] = "Delete Region";
+}
+
+<div class="row">
+
+    <div class="col-6 offset-3">
+        <div class="card">
+
+            <center>
+                <div class="card-header bg-secondary text-light">
+                    <h4>Surely you want to remove @Model.Name ?</h4>
+                </div>
+            </center>
+
+            <center>
+
+                <div class="card-body">
+                    <form method="post" asp-controller="Region" asp-action="DeletePost">
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <button type="submit" class="btn btn-primary">Eliminar</button>
+                        <a asp-controller="Region" asp-action="Index" class="btn btn-danger">Cancelar</a>
+
+                    </form>
+                </div>
+
+            </center>
+
+        </div>
+
+    </div>
+
+</div>
